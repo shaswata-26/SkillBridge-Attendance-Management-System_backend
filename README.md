@@ -171,6 +171,22 @@ Application errors use:
 }
 ```
 
+## Swagger / OpenAPI
+
+The backend exposes Swagger documentation from the running API:
+
+```text
+http://localhost:5000/api/docs
+```
+
+The raw OpenAPI JSON document is available at:
+
+```text
+http://localhost:5000/api/docs/openapi.json
+```
+
+In Swagger UI, click **Authorize** and paste a Clerk session JWT as the bearer token to test protected endpoints.
+
 ## API Reference
 
 Base URL locally:

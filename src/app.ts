@@ -10,6 +10,7 @@ import sessionRoutes from "./routes/session.routes";
 import attendanceRoutes from "./routes/attendance.routes";
 import institutionRoutes from "./routes/institution.routes";
 import programmeRoutes from "./routes/programme.routes";
+import docsRoutes from "./routes/docs.routes";
 import { errorHandler, notFoundHandler } from "./middlewares/error";
 
 export const app = express();
@@ -29,6 +30,7 @@ app.get("/health", (_req, res) => {
   res.json({ success: true, message: "SkillBridge API is running" });
 });
 
+app.use("/api/docs", docsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/batches", batchRoutes);
 app.use("/api/sessions", sessionRoutes);
