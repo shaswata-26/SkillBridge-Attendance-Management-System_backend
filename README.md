@@ -1,7 +1,11 @@
 # SkillBridge Backend
 
 Express + TypeScript API for the SkillBridge attendance management MVP. The backend owns application roles, authorization checks, attendance writes, invite-based batch enrollment, and reporting summaries.
+## Live URL
 
+```text
+https://skillbridge-attendance-management-system-4tth.onrender.com
+```
 ## Stack
 
 - Node.js + Express
