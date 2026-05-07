@@ -103,6 +103,14 @@ Health check:
 GET /health
 ```
 
+API root:
+
+```http
+GET /
+```
+
+Returns basic API metadata and links to health/docs. Clerk middleware is scoped to protected API route groups, so the backend root URL does not process frontend Clerk handshake requests.
+
 ## Scripts
 
 | Script | Purpose |

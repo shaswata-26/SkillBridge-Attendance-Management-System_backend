@@ -48,19 +48,27 @@ app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
-app.use(clerkMiddleware());
+
+app.get("/", (_req, res) => {
+  res.json({
+    success: true,
+    message: "SkillBridge Attendance API",
+    health: "/health",
+    docs: "/api/docs",
+  });
+});
 
 app.get("/health", (_req, res) => {
   res.json({ success: true, message: "SkillBridge API is running" });
 });
 
 app.use("/api/docs", docsRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/batches", batchRoutes);
-app.use("/api/sessions", sessionRoutes);
-app.use("/api/attendance", attendanceRoutes);
-app.use("/api/institutions", institutionRoutes);
-app.use("/api/programme", programmeRoutes);
+app.use("/api/auth", clerkMiddleware(), authRoutes);
+app.use("/api/batches", clerkMiddleware(), batchRoutes);
+app.use("/api/sessions", clerkMiddleware(), sessionRoutes);
+app.use("/api/attendance", clerkMiddleware(), attendanceRoutes);
+app.use("/api/institutions", clerkMiddleware(), institutionRoutes);
+app.use("/api/programme", clerkMiddleware(), programmeRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
