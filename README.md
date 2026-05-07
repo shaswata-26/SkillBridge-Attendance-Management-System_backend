@@ -55,7 +55,7 @@ Required:
 Optional/defaulted:
 
 - `CLERK_PUBLISHABLE_KEY`: Present for deployment parity, not directly required by backend routes.
-- `FRONTEND_URL`: CORS origin. Defaults to `http://localhost:3000`.
+- `FRONTEND_URL`: Allowed browser origin for CORS. Defaults to `http://localhost:3000`. Use a comma-separated list for multiple origins, for example `http://localhost:3000,https://your-frontend.vercel.app`.
 - `PORT`: API port. Defaults to `5000`.
 - `NODE_ENV`: `development`, `test`, or `production`. Defaults to `development`.
 
@@ -383,6 +383,12 @@ CLERK_SECRET_KEY=...
 FRONTEND_URL=https://your-frontend-domain
 NODE_ENV=production
 PORT=10000
+```
+
+For Vercel preview deployments or multiple frontend domains, set `FRONTEND_URL` as a comma-separated allowlist:
+
+```env
+FRONTEND_URL=https://your-production-frontend.vercel.app,https://your-preview-frontend.vercel.app
 ```
 
 ## Troubleshooting
