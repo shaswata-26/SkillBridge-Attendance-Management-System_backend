@@ -187,6 +187,12 @@ The backend exposes Swagger documentation from the running API:
 http://localhost:5000/api/docs
 ```
 
+Deployed Swagger documentation:
+
+```text
+https://skillbridge-attendance-management-system-4tth.onrender.com/api/docs
+```
+
 The raw OpenAPI JSON document is available at:
 
 ```text
