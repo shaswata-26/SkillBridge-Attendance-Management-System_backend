@@ -24,6 +24,16 @@ const allowedOrigins = env.FRONTEND_URL.split(",")
   .map(normalizeOrigin)
   .filter(Boolean);
 
+function isAllowedOrigin(origin: string) {
+  const normalizedOrigin = normalizeOrigin(origin);
+
+  return (
+    allowedOrigins.includes("*") ||
+    allowedOrigins.includes(normalizedOrigin) ||
+    normalizedOrigin.endsWith(".vercel.app")
+  );
+}
+
 const corsOptions: CorsOptions = {
   origin(origin, callback) {
     if (!origin) {
@@ -31,12 +41,13 @@ const corsOptions: CorsOptions = {
       return;
     }
 
-    if (allowedOrigins.includes("*") || allowedOrigins.includes(normalizeOrigin(origin))) {
+    if (isAllowedOrigin(origin)) {
       callback(null, true);
       return;
     }
 
-    callback(new Error(`CORS blocked for origin: ${origin}`));
+    console.warn(`CORS blocked for origin: ${origin}`);
+    callback(null, false);
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
